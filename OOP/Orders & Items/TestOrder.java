@@ -46,12 +46,7 @@ public class TestOrder {
         order4.items.add(item2);
         order4.total += item2.price;
         order4.total += 2*item2.price;
-//////////////
         
-
-    
-        // Application Simulations
-        // Use this example code to test various orders' updates
         System.out.printf("Name: %s\n", order1.name);
         System.out.printf("Total: %s\n", order1.total);
         System.out.printf("Ready: %s\n", order1.ready);

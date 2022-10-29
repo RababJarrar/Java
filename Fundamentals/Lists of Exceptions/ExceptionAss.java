@@ -19,6 +19,7 @@ public class ExceptionAss {
         // catch (java.lang.Exception Rabab){
         //     System.out.println(Rabab);
         // }
+
         for(int i = 0; i < myList.size(); i++) {
             try {
                 Integer castedValue = (Integer) myList.get(i);
@@ -28,9 +29,9 @@ public class ExceptionAss {
                 // System.out.println(e);
                 System.out.println("exceptions at index "+i+": "+myList.get(i));
             }
-
-
         }
+
+
     }
 }
 

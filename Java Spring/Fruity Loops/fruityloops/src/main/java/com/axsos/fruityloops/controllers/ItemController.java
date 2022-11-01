@@ -1,14 +1,12 @@
 package com.axsos.fruityloops.controllers;
 
 import java.util.ArrayList;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.axsos.fruityloops.models.Item;
 
-//... imports (Use shift+ctrl+O or shift+cmd+O to import as you code)
 @Controller
 public class ItemController {
  

@@ -1,17 +1,5 @@
 package com.axsos.fruityloops.models;
 
-//public class Item {
-//    
-//    // MEMBER VARIABLES
-//    private String name;
-//    private double price;
-//    
-//    // CONSTRUCTOR
-//    
-//    
-//    // As always, don't forget to generate Getters and Setters!
-//}
-
 public class Item{
 	 private String name;
 	 private double price;

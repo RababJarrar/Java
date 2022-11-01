@@ -10,11 +10,9 @@ public class CounteController {
 		if (session.getAttribute("count") == null) {
 			session.setAttribute("count", 0);
 			} 
-		else {
 				Integer currentCount = (Integer)session.getAttribute("count");
 				currentCount = currentCount+1 ;
 				session.setAttribute("count",currentCount);
-		}
 		return "index.jsp";
 	}
 	@RequestMapping("/counter")

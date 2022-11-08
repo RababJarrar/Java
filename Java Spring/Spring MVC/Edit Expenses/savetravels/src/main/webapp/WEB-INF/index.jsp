@@ -25,7 +25,7 @@
 	<td>${one.name}</td>
 	<td>${one.vendor}</td>
 	<td>${one.amount}</td>
-	<td><a href="/expenses/edit/${one.id}"> edit</a></td>
+	<td><a href="/expenses/${one.id}/edit"> edit</a></td>
 	</tr>
 	</c:forEach>
 </table>

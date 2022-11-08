@@ -1,6 +1,5 @@
 package com.axsos.savetravels.controllers;
 
-import java.awt.print.Expense;
 
 import javax.validation.Valid;
 
@@ -42,14 +41,14 @@ public class ExpenseController {
 	    public String edit(@PathVariable("id") Long id, Model model) {
 	        Expense expense = expenseService.findexpense(id);
 	        model.addAttribute("expense", expense);
-	        return "/expenses/edit.jsp";
+	        return "edit.jsp";
 	    }
 	    @PutMapping("/expenses/{id}")
 	    public String update(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
 	        if (result.hasErrors()) {
 	            return "/expenses/edit.jsp";
 	        } else {
-	            expenseService.updateExpense(expense);
+	            expenseService.updateexpense(expense);
 	            return "redirect:/expenses";
 	        }
 	    }

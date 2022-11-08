@@ -14,7 +14,8 @@
 <body>
 <h1>Save Travels</h1>
 <h1>Edit Expense</h1>
-<form:form action="/expenses/edit/" method="post" modelAttribute="expense">
+<form:form action="/expenses/${expense.id}" method="post" modelAttribute="expense">
+    <input type="hidden" name="_method" value="put">
     <p>
         <form:label path="name">Expense Name</form:label>
         <form:errors path="name"/>

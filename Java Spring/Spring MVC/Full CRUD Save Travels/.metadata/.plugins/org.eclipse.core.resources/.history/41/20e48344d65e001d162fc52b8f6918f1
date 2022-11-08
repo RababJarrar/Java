@@ -1,0 +1,36 @@
+package com.axsos.savetravels.controllers;
+
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import com.axsos.savetravels.models.Expense;
+import com.axsos.savetravels.services.ExpenseService;
+@Controller
+public class ExpenseController {
+	
+//	@GetMapping("/expenses")
+//	public String index() {
+//		return "index.jsp";
+//	}
+	private final ExpenseService expenseService;
+    public ExpenseController(ExpenseService expenseService){
+        this.expenseService = expenseService;
+    }
+	 @GetMapping("/expenses/new")
+	    public String newBook(@ModelAttribute("expense") Expense expenses) {
+	        return "/expenses/index.jsp";
+	    }
+	 @PostMapping("/expenses")
+	 public String create(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
+	        if (result.hasErrors()) {
+	            return "/expenses/index.jsp";
+	        } else {
+	        	expenseService.createexpense(expense);
+	            return "redirect:/expenses";
+	        }
+}
+}

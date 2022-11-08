@@ -1,0 +1,11 @@
+package com.axsos.savetravels.controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class ExpenseController {
+	@GetMapping("/expenses")
+	public String index() {
+		return "index.jsp";
+	}
+	
+}

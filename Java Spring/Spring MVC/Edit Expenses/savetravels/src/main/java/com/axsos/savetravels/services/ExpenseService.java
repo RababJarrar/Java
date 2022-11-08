@@ -31,7 +31,7 @@ public class ExpenseService {
             return null;
         }
     }
- // update 
+    // update 
     public Expense updateexpense(Expense a) {
         return expenseRepository.save(a);
     }

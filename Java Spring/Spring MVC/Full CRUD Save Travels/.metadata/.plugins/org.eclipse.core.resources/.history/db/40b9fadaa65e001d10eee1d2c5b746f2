@@ -1,0 +1,5 @@
+package com.axsos.savetravels.repositories;
+
+public interface ExpenseRepository {
+
+}

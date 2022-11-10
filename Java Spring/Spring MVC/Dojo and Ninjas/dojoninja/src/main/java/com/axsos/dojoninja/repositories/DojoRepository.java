@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.axsos.dojoninja.models.Ninja;
+import com.axsos.dojoninja.models.Dojo;
 
 @Repository
-public interface NinjaRepository extends CrudRepository<Ninja, Long>{
-	List<Ninja> findAll();
+public interface DojoRepository extends CrudRepository<Dojo, Long> {
+	List<Dojo> findAll();
 }
+
+

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.axsos.dojoninja.models.Dojo;
@@ -35,23 +36,36 @@ public class DojoNinjaController {
 	}
   
 	 @PostMapping("/createdojo")
-	 public String index3(@ModelAttribute("dojo")Dojo dojo, BindingResult result) {
-		 dojoService.createDojo(dojo);
-	            return "redirect:/dojos/new";     
-	 }
-
-	 @PostMapping("/createninja")
-	 public String index4(@Valid @ModelAttribute("ninja")Ninja ninja, BindingResult result) {
+	 public String index3(@ModelAttribute("dojo")Dojo dojo, BindingResult result,Model model) {
 		 if (result.hasErrors()) {
+			 model.addAttribute("ninjas",ninjaService.allNinja());
 	            return "ninja.jsp";
 	     } 
 		 else {
-	        		ninjaService.createNinja(ninja);
+		 dojoService.createDojo(dojo);
+	            return "redirect:/dojos/new";
+		 }
+	 }
+
+	 @PostMapping("/createninja")
+	 public String index4(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result,Model model) {
+		 if (result.hasErrors()) {
+			 model.addAttribute("dojos",dojoService.allDojo());
+	            return "ninja.jsp";
+	     } 
+		 else {
+	        	ninjaService.createNinja(ninja);  
 	            return "redirect:/ninjas/new"; 
 	     }    
-	 }	 
+	 }
+	 
+	 @GetMapping("/dojos/{dojoid}")
+	 public String index4(@PathVariable("dojoid")Long id,Model model) {
+		 model.addAttribute("one_dojo",dojoService.findDojo(id));
+		  return "all.jsp";
 	
 	
+	 }
 	
 }
 

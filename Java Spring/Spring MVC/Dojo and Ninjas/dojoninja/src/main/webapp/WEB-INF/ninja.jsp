@@ -12,7 +12,7 @@
 <body>
 <h1>New Ninja</h1>
 <form:form action="/createninja" method="post" modelAttribute="ninja">
-		<form:label path="firstName">Dojo</form:label>
+		<form:label path="dojo">Dojo</form:label>
 		<form:select path="dojo">
         <c:forEach var="one" items="${dojos}">
         <form:option value="${one.id}"><c:out value="${one.name}"></c:out></form:option>

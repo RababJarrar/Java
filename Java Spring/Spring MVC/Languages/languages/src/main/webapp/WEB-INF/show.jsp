@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>    
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,20 +11,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>${one_dojo.name} Ninjas</h1>
-<table border="1">	
-	<tr>
-	<th>First Name</th>
-	<th>Last Name</th>
-	<th>Age</th>
-	</tr>
-	<c:forEach var="o" items="${one_dojo.ninjas}">
-	<tr>
-	<td>${o.firstName}</td>
-	<td>${o.lastName}</td>
-	<td>${o.age}</td>
-	</tr>
-	</c:forEach>
-</table>
+<form:form  modelAttribute="language">
+<c:out value="${language.name}"/>
+<h1>${language.name}</h1>
+<h1>${language.creator}</h1>
+
+	<a href="/languages/edit/${language.id}"> edit</a> <br>
+    <a href="/languages/delete/${language.id}"> delete</a> <br>
+</form:form>
 </body>
 </html>

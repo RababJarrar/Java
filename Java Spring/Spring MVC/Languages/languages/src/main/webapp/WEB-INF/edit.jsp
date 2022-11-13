@@ -11,7 +11,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form action="/languages/${this_language.id}" method="post" modelAttribute="language">
+
+<form:form action="/languages/${language.id}" method="post" modelAttribute="language">
+    <a href="/languages/delete/${language.id}"> delete</a> <br>
    <input type="hidden" name="_method" value="put">
     <p>
         <form:label path="name">Name</form:label>

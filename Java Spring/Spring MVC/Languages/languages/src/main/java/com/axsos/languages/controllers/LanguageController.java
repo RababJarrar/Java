@@ -39,10 +39,10 @@ public class LanguageController {
 	        }
 	 }
 
-	 
+//	 @ModelAttribute("language") Language language, 
 	    @GetMapping("/languages/edit/{id}")
-	    public String index2(@PathVariable("id") Long id,@ModelAttribute("language") Language language, Model model) {
-	        model.addAttribute("this_language", langServ.find_lang(id));
+	    public String index2(@PathVariable("id") Long id, Model model) {
+	        model.addAttribute("language", langServ.find_lang(id));
 	        return "edit.jsp";
 	    } 
 	    @PutMapping("/languages/{id}")

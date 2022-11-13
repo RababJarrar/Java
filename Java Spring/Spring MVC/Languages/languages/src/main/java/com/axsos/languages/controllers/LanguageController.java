@@ -39,7 +39,7 @@ public class LanguageController {
 	        }
 	 }
 
-//	 @ModelAttribute("language") Language language, 
+//	 @ModelAttribute("this_language") Language language, 
 	    @GetMapping("/languages/edit/{id}")
 	    public String index2(@PathVariable("id") Long id, Model model) {
 	        model.addAttribute("language", langServ.find_lang(id));

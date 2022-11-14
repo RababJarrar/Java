@@ -36,10 +36,9 @@ public class DojoNinjaController {
 	}
   
 	 @PostMapping("/createdojo")
-	 public String index3(@ModelAttribute("dojo")Dojo dojo, BindingResult result,Model model) {
+	 public String index3(@Valid @ModelAttribute("dojo")Dojo dojo, BindingResult result) {
 		 if (result.hasErrors()) {
-			 model.addAttribute("ninjas",ninjaService.allNinja());
-	            return "ninja.jsp";
+	            return "dojo.jsp";
 	     } 
 		 else {
 		 dojoService.createDojo(dojo);
@@ -63,8 +62,6 @@ public class DojoNinjaController {
 	 public String index4(@PathVariable("dojoid")Long id,Model model) {
 		 model.addAttribute("one_dojo",dojoService.findDojo(id));
 		  return "all.jsp";
-	
-	
 	 }
 	
 }

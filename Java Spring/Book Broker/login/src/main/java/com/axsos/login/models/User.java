@@ -51,7 +51,7 @@ public class User {
 	    
 	    
 	    @Column(updatable=false)
-	    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+	    @OneToMany(mappedBy="borrower", fetch = FetchType.LAZY)
 	    private List<Book> borrowedBooks;
 	    
 	    public User() {}	

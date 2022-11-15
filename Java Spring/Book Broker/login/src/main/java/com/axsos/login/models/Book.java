@@ -51,6 +51,12 @@ public class Book {
 	public void setBorrower(User borrower) {
 		this.borrower = borrower;
 	}
+	/////////////
+	public void setBorrowernull(User borrower) {
+		this.borrower = null;
+	}
+	//////////////////////////////////
+
 	public User getUser() {
 		return user;
 	}

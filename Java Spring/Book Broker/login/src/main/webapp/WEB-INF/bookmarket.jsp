@@ -24,18 +24,25 @@
         <th>Actions</th>
     </tr>
     <c:forEach var="book" items="${books}">
-    <tr>
-        <td> ${book.id}</td>
-        <td><a href="/books/${book.id}">${book.title}</a></td>
-        <td>${book.author}</td>
-        <td>${book.user.userName} </td>
-        <td><c:choose>
-        
-         <c:when test="${book.user.id eq currentUser.id}"><a href="/books/${book.id}/edit">Edit</a> <a href="/books/${book.id}/delete">Delete</a></c:when>
-        <c:otherwise><a href="/books/${book.id}/borrow">Borrow</a></c:otherwise> 
-        </c:choose></td>
-    </tr>
+	    <c:choose>
+	    <c:when test="${(book.borrower.id eq null) or (book.user.id eq currentUser.id)}">
+		    <tr>
+		        <td> ${book.id}</td>
+		        <td><a href="/books/${book.id}">${book.title}</a></td>
+		        <td>${book.author}</td>
+		        <td>${book.user.userName} </td>
+		     
+		        <td>
+		        <c:choose>
+			        <c:when test="${book.user.id eq currentUser.id}"><a href="/books/${book.id}/edit">Edit</a> <a href="/books/${book.id}/delete">Delete</a></c:when>
+			        <c:otherwise><a href="/books/${book.id}/borrow">Borrow</a></c:otherwise> 
+			        </c:choose>
+		        </td>
+		    </tr>
+		</c:when>
+	    </c:choose>
     </c:forEach>
+    
 </table>
 <p> Books Iam Borrowing
 <table border="1">
@@ -46,13 +53,13 @@
         <th>Owner</th>
         <th>Actions</th>
     </tr>
-    <c:forEach var="book" items="${books}">
+    <c:forEach var="one" items="${borrowedbooksfromuser}"> 
     <tr>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
+        <td>${one.id}</td>
+        <td> ${one.title} </td>
+        <td>${one.author} </td>
+        <td> ${one.user.userName} </td>
+        <td><a href="/books/${one.id}/return">return</a></td>
     </tr>
     </c:forEach>
 </table>

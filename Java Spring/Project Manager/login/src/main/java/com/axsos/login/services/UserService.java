@@ -41,16 +41,14 @@ public class UserService {
     
 	 
     public User register(User newUser, BindingResult result) {
-        
     	Optional<User> potentialUser = userRepo.findByEmail(newUser.getEmail());
     	if (potentialUser.isPresent()) {
     		result.rejectValue("email", "Matches", "Email already exists");
     	}
-    	
     	if(!newUser.getPassword().equals(newUser.getConfirm())) {
     	    result.rejectValue("confirm", "Matches", "The Confirm Password must match Password!");
     	}
-    	
+
     	String toCheckPattern = newUser.getUserName();
     	if (!toCheckPattern.matches("[a-zA-Z]+")) {
     		 result.rejectValue("userName", "Matches", "Must contain letters only");
@@ -66,7 +64,7 @@ public class UserService {
             return newUser;
     	} 
     }
-    public User login(LoginUser newLogin, BindingResult result) {
+    	public User login(LoginUser newLogin, BindingResult result) {
     	
     	if (result.hasErrors()) {
     		return null;

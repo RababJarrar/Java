@@ -18,6 +18,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,11 +38,10 @@ public class Project {
 	 	@Size(min = 3)
 	    private String description;
 	 	
+	 	@NotNull(message="Date is required")
 	 	@Future
 	 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	    private Date date;
-	 	
-	 	
 	 	
 	 	
 	    @Column(updatable=false)
@@ -59,7 +59,7 @@ public class Project {
 
 	    
 	    @ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name="project_id")
+		@JoinColumn(name="leader_id")
 		private User leader;
 	    
 	   

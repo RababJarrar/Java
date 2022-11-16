@@ -8,11 +8,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	
 	<h1>Edit project</h1>
-	<form:form action="/projects/edit" method="post" modelAttribute="project">
+	<form:form action="/projects/edit/${project.id}" method="post" modelAttribute="project">
+    	<input type="hidden" name="_method" value="put">
     	<p>
         	<form:label path="title">Title:</form:label>
         	<form:errors path="title"/>

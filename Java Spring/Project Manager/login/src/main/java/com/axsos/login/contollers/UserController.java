@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.axsos.login.models.LoginUser;
 import com.axsos.login.models.Project;
@@ -73,9 +76,8 @@ public class UserController {
    		Long userId = (Long) session.getAttribute("userId");
    		User currentUser = userServ.findUserById(userId);
    		model.addAttribute("currentUser", currentUser);	
-   		/////
    		model.addAttribute("projects", projectService.allprojects());	
-   		////
+//   		model.addAttribute("leaderproject", currentUser.getProjects());
    		return "Home.jsp";
    	}
    	return "redirect:/";	  		
@@ -88,11 +90,15 @@ public class UserController {
    		return "redirect:/";
    	}
    	else {
+//   		Long userId = (Long) session.getAttribute("userId");
+//   		User currentUser = userServ.findUserById(userId);
+//   		model.addAttribute("currentUser", currentUser);
        return "projectform.jsp";
    	}
    }
    
- @PostMapping("/createproject")
+	// create project
+	 @PostMapping("/createproject")
 	public String create(@Valid @ModelAttribute("project") Project project, BindingResult result,Model model, HttpSession session ) {
 		if (result.hasErrors()) {
          return "projectform.jsp";
@@ -101,20 +107,48 @@ public class UserController {
 	   	   User currentUser = userServ.findUserById(userId);
 	   	   project.setLeader(currentUser);
          projectService.createProject(project);
-         return "redirect:/projects/new";
+         return "redirect:/dashboard";
      }
 	}
    
    
    // render edit page
-   @GetMapping("/projects/edit")
-   public String index3(HttpSession session,@ModelAttribute("project") Project project) {
+   @GetMapping("/projects/edit/{id}")
+   public String index3(HttpSession session,Model model,@PathVariable("id") Long id) {
    	if (session.getAttribute("userId")== null){
    		return "redirect:/";
    	}
    	else {
+   		Project project = projectService.findProject(id);
+		model.addAttribute("project", project);
        return "edit.jsp";
    	}
    }
-
+   
+	// render show one page
+   @GetMapping("/project/{id}")
+   public String showExpense(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("project", projectService.findProject(id));
+       return "oneproject.jsp";
+   }
+   
+   // edit project
+   @PutMapping("/projects/edit/{id}")
+	public String update(@Valid @ModelAttribute("project") Project project, BindingResult result,HttpSession session) { 	
+		if (result.hasErrors()) {
+			return "edit.jsp";
+		} else {
+			Long userId = (Long) session.getAttribute("userId");
+			User currentUser = userServ.findUserById(userId);
+			project.setLeader(currentUser);
+			projectService.updateProject(project);
+			return "redirect:/dashboard";
+}
+	}
+   	 // edit project
+	 @RequestMapping("/delete/{id}")       //or  @PostMapping("/delete/{id}")
+	 public String destroy(@PathVariable("id") Long id) {
+		   projectService.deleteProject(id);
+		   return "redirect:/dashboard";
+}
 }

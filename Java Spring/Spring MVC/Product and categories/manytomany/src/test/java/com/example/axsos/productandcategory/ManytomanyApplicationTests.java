@@ -1,4 +1,4 @@
-package com.axsos.manytomany;
+package com.example.axsos.productandcategory;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

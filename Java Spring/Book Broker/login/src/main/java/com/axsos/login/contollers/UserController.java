@@ -186,6 +186,11 @@ public class UserController {
 	   		bookService.updateBook(returnedbook);
 	           return "redirect:/bookmarket";
 	       }
+	   // show info of book
+	   @GetMapping("/1")
+	   public String index4() {
+		   return "car.jsp";	
+	   }
 
 
 	}
